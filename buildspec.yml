@@ -5,9 +5,10 @@ phases:
     runtime-versions:
       python: 3.x # Optional, if Python is needed for scripts
     commands:
-      - echo "Installing Terraform..."
-      - curl -O https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip # Replace with your desired Terraform version
-      - unzip terraform_1.5.6_linux_amd64.zip
+      - echo "Installing Terraform for ARM64..."
+      - curl -O https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_arm64.zip
+      - unzip terraform_1.5.6_linux_arm64.zip
+      - chmod +x terraform
       - mkdir -p /tmp/bin
       - mv terraform /tmp/bin/
       - export PATH=$PATH:/tmp/bin
