@@ -31,7 +31,7 @@ resource "aws_security_group" "allow_ssh" {
 
 # Launch an EC2 instance
 resource "aws_instance" "my_instance" {
-  ami           = "ami-0c02fb55956c7d316" # Replace with a valid AMI ID for your region
+  ami           = "ami-08048b042dd26bddb" # Replace with a valid AMI ID for your region
   instance_type = "t2.micro"             # Choose the instance type (Free Tier eligible)
 
   #key_name      = aws_key_pair.my_key.key_name # Reference the key pair
