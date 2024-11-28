@@ -1,0 +1,37 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.x # Optional, if Python is needed for scripts
+    commands:
+      - echo "Installing Terraform..."
+      - curl -O https://releases.hashicorp.com/terraform/1.5.6/terraform_1.5.6_linux_amd64.zip # Replace with your desired Terraform version
+      - unzip terraform_1.5.6_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+      - terraform --version
+
+  pre_build:
+    commands:
+      - echo "Initializing Terraform..."
+      - terraform init
+      - echo "Validating Terraform files..."
+      - terraform validate
+
+  build:
+    commands:
+      - echo "Planning infrastructure changes..."
+      - terraform plan -out=tfplan
+      - echo "Applying infrastructure changes..."
+      - terraform apply -input=false tfplan
+
+  post_build:
+    commands:
+      - echo "Cleaning up..."
+      - rm -rf tfplan
+      - echo "Build and resource creation completed!"
+
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: ye
