@@ -26,7 +26,7 @@ phases:
       - echo "Planning infrastructure changes..."
       - terraform plan -out=tfplan
       - echo "Applying infrastructure changes..."
-      - terraform destroy
+      - terraform destroy -input=false
       
   post_build:
     commands:
