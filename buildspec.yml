@@ -34,6 +34,7 @@ phases:
       - rm -rf tfplan
       - echo "Build and resource creation completed!"
 
+      
 artifacts:
   files:
     - "**/*"
