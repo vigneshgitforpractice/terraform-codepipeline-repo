@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        TF_IN_AUTOMATION = 'true'
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -13,16 +9,30 @@ pipeline {
             }
         }
 
-        stage('Terraform Init & Plan') {
+        stage('Build') {
             steps {
-                sh 'terraform init -reconfigure'
-                sh 'terraform plan -out=tfplan'
+                echo 'Build stage goes here'
             }
         }
 
-        stage('Terraform Apply') {
+        stage('Terraform Init & Plan') {
             steps {
-                sh 'terraform apply -auto-approve tfplan'
+                sh '''
+                    # Clean the .terraform directory to ensure fresh initialization
+                    rm -rf .terraform
+                    
+                    # Initialize Terraform with reconfigure option
+                    terraform init -reconfigure
+                    
+                    # Run terraform plan and output to tfplan
+                    terraform plan -out=tfplan
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy stage goes here'
             }
         }
     }
