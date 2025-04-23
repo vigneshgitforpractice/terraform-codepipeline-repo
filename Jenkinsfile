@@ -5,19 +5,19 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                git 'https://github.com/vigneshgitforpractice/terraform-codepipeline-repo.git'
+                    url: 'https://github.com/vigneshgitforpractice/terraform-codepipeline-repo.git'
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                echo 'Build stage goes here'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo 'Deploying the project...'
+                echo 'Deploy stage goes here'
             }
         }
     }
