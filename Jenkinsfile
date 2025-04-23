@@ -30,6 +30,15 @@ pipeline {
             }
         }
 
+        stage('Terraform Apply') {
+            steps {
+                sh '''
+                    # Apply the plan generated in the previous step
+                    terraform apply -auto-approve tfplan
+                '''
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploy stage goes here'
