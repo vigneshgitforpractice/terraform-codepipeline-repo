@@ -7,16 +7,16 @@ pipeline {
                 git 'https://github.com/vigneshgitforpractice/terraform-codepipeline-repo.git'
             }
         }
+
         stage('Build') {
             steps {
-                echo 'Building project...'
-                // Add build steps here
+                echo 'Building the project...'
             }
         }
-        stage('Deploy') 
+
+        stage('Deploy') {
             steps {
-                echo 'Deploying project...'
-                // Add deploy steps here
+                echo 'Deploying the project...'
             }
         }
     }
