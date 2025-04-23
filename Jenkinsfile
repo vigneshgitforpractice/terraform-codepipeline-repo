@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        TF_IN_AUTOMATION = 'true'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -9,15 +13,16 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Terraform Init & Plan') {
             steps {
-                echo 'Build stage goes here'
+                sh 'terraform init'
+                sh 'terraform plan -out=tfplan'
             }
         }
 
-        stage('Deploy') {
+        stage('Terraform Apply') {
             steps {
-                echo 'Deploy stage goes here'
+                sh 'terraform apply -auto-approve tfplan'
             }
         }
     }
