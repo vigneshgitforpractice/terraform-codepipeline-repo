@@ -38,7 +38,7 @@ resource "aws_instance" "my_instance" {
   security_groups = [aws_security_group.allow_ssh.name] # Attach the security group
 
   tags = {
-    Name = "MyEC2Instance" # Tag for the instance
+    Name = "testec2" # Tag for the instance
   }
 }
 
